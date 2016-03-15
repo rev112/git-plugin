@@ -40,3 +40,7 @@ assure that you haven't introduced new findbugs warnings.
 * Create submodule tests
 * Improve code coverage
 * Improve javadoc
+
+## MMP fixes
+
+* If `PARENT_CHECKOUT_ONLY` environment variable is set to 1 before the SCM step, git fetch and checkout will only be performed for the parent build (where `EXECUTOR_NUMBER` equals to "-1").

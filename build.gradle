@@ -12,7 +12,7 @@ apply plugin: 'jpi'
 
 jenkinsPlugin {
     coreVersion = '1.420'
-    displayName = 'Git Plugin'
+    displayName = 'Git Plugin Fixed (mmp)'
     url = 'http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin'
 }
 

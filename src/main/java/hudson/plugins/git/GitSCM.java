@@ -1044,6 +1044,16 @@ public class GitSCM extends GitSCMBackwardCompatibility {
         }
 
         EnvVars environment = build.getEnvironment(listener);
+
+        String runCheckoutOnceValue = environment.get("PARENT_CHECKOUT_ONLY", "");
+        // EXECUTOR_NUMBER equals "-1" for parent jobs
+        String executorNumber = environment.get("EXECUTOR_NUMBER", "");
+
+        if (runCheckoutOnceValue.equals("1") && !executorNumber.equals("-1")) {
+            listener.getLogger().println("[Patched Git Plugin] - Skipping checkout, already done in the parent job.");
+            return;
+        }
+
         GitClient git = createClient(listener, environment, build, workspace);
 
         for (GitSCMExtension ext : extensions) {
